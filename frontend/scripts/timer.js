@@ -1,90 +1,51 @@
-// ===============================
-// CONFIG
-// ===============================
-const MIN_REST = 5; // minimum rest time in minutes
-const REST_RATIO = 0.2; // 20% of work time
 
-// ===============================
-// TIMER STATE
-// ===============================
-let workMinutes = 25;
-let secondsLeft = workMinutes * 60;
+let time = 1500; // 25 minutes
 let timerInterval = null;
-let isWorking = true;
+let isRunning = false;
 
-// ===============================
-// DOM ELEMENTS
-// ===============================
-const timerDisplay = document.getElementById("timer-display");
-const startBtn = document.getElementById("start-btn");
-const stopBtn = document.getElementById("stop-btn");
-const resetBtn = document.getElementById("reset-btn");
+const display = document.getElementById("time-display");
+const sessionLabel = document.getElementById("session-label");
 
-// ===============================
-// MAIN TIMER FUNCTIONS
-// ===============================
 function updateDisplay() {
-  const mins = Math.floor(secondsLeft / 60);
-  const secs = secondsLeft % 60;
-  timerDisplay.textContent = `${mins}:${secs.toString().padStart(2, "0")}`;
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  display.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-function startTimer() {
-  if (timerInterval) return;
+document.getElementById("start-btn").onclick = () => {
+  if (!isRunning) {
+    isRunning = true;
+    timerInterval = setInterval(() => {
+      time--;
+      updateDisplay();
 
-  timerInterval = setInterval(() => {
-    secondsLeft--;
+      if (time <= 0) {
+        clearInterval(timerInterval);
+        isRunning = false;
 
-    updateDisplay();
+        // Send session to backend
+        fetch("/api/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ duration: 25, category: "Focus" })
+        });
 
-    if (secondsLeft <= 0) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-
-      if (isWorking) {
-        const restTime = calculateRestTime(workMinutes);
-        alert(`Great job! You earned a ${restTime}-minute break.`);
-        startRestTimer(restTime);
-      } else {
-        alert("Break over! Ready for another session?");
-        resetTimer();
+        alert("Session complete!");
       }
-    }
-  }, 1000);
-}
+    }, 1000);
+  }
+};
 
-function stopTimer() {
+document.getElementById("pause-btn").onclick = () => {
   clearInterval(timerInterval);
-  timerInterval = null;
-}
+  isRunning = false;
+};
 
-function resetTimer() {
-  stopTimer();
-  isWorking = true;
-  secondsLeft = workMinutes * 60;
+document.getElementById("reset-btn").onclick = () => {
+  clearInterval(timerInterval);
+  isRunning = false;
+  time = 1500;
   updateDisplay();
-}
+};
 
-// ===============================
-// REST TIMER
-// ===============================
-function calculateRestTime(workMinutes) {
-  return Math.max(MIN_REST, Math.floor(workMinutes * REST_RATIO));
-}
-
-function startRestTimer(restMinutes) {
-  isWorking = false;
-  secondsLeft = restMinutes * 60;
-  updateDisplay();
-  startTimer();
-}
-
-// ===============================
-// EVENT LISTENERS
-// ===============================
-startBtn.addEventListener("click", startTimer);
-stopBtn.addEventListener("click", stopTimer);
-resetBtn.addEventListener("click", resetTimer);
-
-// Initialize display
 updateDisplay();
