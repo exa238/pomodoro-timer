@@ -76,12 +76,12 @@ nav a.active {
 
 .start {
   background: var(--bubblegum-pink);
-  color: var(--Emerald);
+  color: var(--dark-teal);
 }
 
 .pause {
   background: var(--royal-gold);
-  color: var(--Emerald);
+  color: var(--dark-teal);
 }
 
 .reset {
@@ -94,12 +94,15 @@ nav a.active {
 .chart-container {
   width: 80%;
   margin: 2rem auto;
+  text-align: center;
+  color: var(--royal-gold);
 }
 
 /* WORLD */
 .world-section {
   text-align: center;
   padding: 2rem;
+  color: var(--royal-gold);
 }
 
 #world-grid {
