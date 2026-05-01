@@ -1,52 +1,54 @@
-console.log("TIMER SCRIPT LOADED");
+document.addEventListener("DOMContentLoaded", () => {
 
-let time = 1500; // 25 minutes
-let timerInterval = null;
-let isRunning = false;
+  console.log("TIMER SCRIPT LOADED");
 
-const display = document.getElementById("time-display");
-const sessionLabel = document.getElementById("session-label");
+  let time = 1500;
+  let timerInterval = null;
+  let isRunning = false;
 
-function updateDisplay() {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-  display.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
+  const display = document.getElementById("time-display");
+  const sessionLabel = document.getElementById("session-label");
 
-document.getElementById("start-btn").onclick = () => {
-  if (!isRunning) {
-    isRunning = true;
-    timerInterval = setInterval(() => {
-      time--;
-      updateDisplay();
-
-      if (time <= 0) {
-        clearInterval(timerInterval);
-        isRunning = false;
-
-        // Send session to backend
-        fetch("/api/session", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ duration: 25, category: "Focus" })
-        });
-
-        alert("Session complete!");
-      }
-    }, 1000);
+  function updateDisplay() {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    display.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
   }
-};
 
-document.getElementById("pause-btn").onclick = () => {
-  clearInterval(timerInterval);
-  isRunning = false;
-};
+  document.getElementById("start-btn").onclick = () => {
+    if (!isRunning) {
+      isRunning = true;
+      timerInterval = setInterval(() => {
+        time--;
+        updateDisplay();
 
-document.getElementById("reset-btn").onclick = () => {
-  clearInterval(timerInterval);
-  isRunning = false;
-  time = 1500;
+        if (time <= 0) {
+          clearInterval(timerInterval);
+          isRunning = false;
+
+          fetch("/api/session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ duration: 25, category: "Focus" })
+          });
+
+          alert("Session complete!");
+        }
+      }, 1000);
+    }
+  };
+
+  document.getElementById("pause-btn").onclick = () => {
+    clearInterval(timerInterval);
+    isRunning = false;
+  };
+
+  document.getElementById("reset-btn").onclick = () => {
+    clearInterval(timerInterval);
+    isRunning = false;
+    time = 1500;
+    updateDisplay();
+  };
+
   updateDisplay();
-};
-
-updateDisplay();
+});
