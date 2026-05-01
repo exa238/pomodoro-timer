@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("TIMER SCRIPT LOADED");
 
-  let time = 1500;
+  let time = 1500; // 25 minutes
   let timerInterval = null;
   let isRunning = false;
 
