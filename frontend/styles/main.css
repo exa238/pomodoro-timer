@@ -1,22 +1,22 @@
 :root {
-  --deep-green: #0A3323;
-  --sage: #839958;
-  --cream: #F7F4D5;
-  --rose: #D3968C;
-  --teal: #105666;
+  --bubblegum-pink: #ef476f;
+  --royal-gold: #ffd166;
+  --Emerald: #06d6a0;
+  --ocean-blue: #118ab2;
+  --dark-teal: #073b4c;
 }
 
 body {
   margin: 0;
-  background: var(--cream);
+  background: var(--dark-teal);
   font-family: 'Inter', sans-serif;
   color: var(--deep-green);
 }
 
 /* NAVIGATION */
 nav {
-  background: var(--deep-green);
-  color: var(--cream);
+  background: var(--bubblegum-pink);
+  color: var(--dark-teal);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -30,13 +30,13 @@ nav ul {
 }
 
 nav a {
-  color: var(--cream);
+  color: var(--royal-gold);
   text-decoration: none;
   font-weight: 600;
 }
 
 nav a.active {
-  border-bottom: 2px solid var(--sage);
+  border-bottom: 2px solid var(--dark-teal);
 }
 
 /* TIMER */
@@ -49,12 +49,12 @@ nav a.active {
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  border: 8px solid var(--deep-green);
+  border: 8px solid var(--Emerald);
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  background: var(--cream);
+  background: var(--dark-teal);
 }
 
 #time-display {
@@ -75,19 +75,19 @@ nav a.active {
 }
 
 .start {
-  background: var(--deep-green);
-  color: var(--cream);
+  background: var(--bubblegum-pink);
+  color: var(--Emerald);
 }
 
 .pause {
-  background: var(--teal);
-  color: var(--cream);
+  background: var(--royal-gold);
+  color: var(--Emerald);
 }
 
 .reset {
   background: transparent;
-  border: 2px solid var(--deep-green);
-  color: var(--deep-green);
+  border: 2px solid var(--Emerald);
+  color: var(--royal-gold);
 }
 
 /* DASHBOARD */
