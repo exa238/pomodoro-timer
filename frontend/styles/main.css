@@ -96,7 +96,7 @@ nav a.active {
   width: 80%;
   margin: 2rem auto;
 }
-.dashboard-h2{
+ h2{
   text-align: center;
   color: var(--royal-gold);
 }
