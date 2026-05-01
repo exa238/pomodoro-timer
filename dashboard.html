@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | PomodoRealm</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>PomodoRealm</h1>
+      <ul>
+        <li><a href="index.html">Timer</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="world.html">Your World</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="dashboard">
+      <h2>Your Productivity Stats</h2>
+
+      <div class="chart-container">
+        <canvas id="weeklyChart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+:root {
+  --deep-green: #0A3323;
+  --sage: #839958;
+  --cream: #F7F4D5;
+  --rose: #D3968C;
+  --teal: #105666;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  font-family: 'Inter', sans-serif;
+  color: var(--deep-green);
+}
+
+/* NAVIGATION */
+nav {
+  background: var(--deep-green);
+  color: var(--cream);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--cream);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a.active {
+  border-bottom: 2px solid var(--sage);
+}
+
+/* TIMER */
+.timer-section {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.timer-circle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 8px solid var(--deep-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background: var(--cream);
+}
+
+#time-display {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.controls {
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.start {
+  background: var(--deep-green);
+  color: var(--cream);
+}
+
+.pause {
+  background: var(--teal);
+  color: var(--cream);
+}
+
+.reset {
+  background: transparent;
+  border: 2px solid var(--deep-green);
+  color: var(--deep-green);
+}
+
+/* DASHBOARD */
+.chart-container {
+  width: 80%;
+  margin: 2rem auto;
+}
+
+/* WORLD */
+.world-section {
+  text-align: center;
+  padding: 2rem;
+}
+
+#world-grid {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 60px);
+  gap: 10px;
+}
